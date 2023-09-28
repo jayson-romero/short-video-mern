@@ -15,7 +15,9 @@ function App() {
 		const fetchData = async () => {
 			setLoading(true)
 			try {
-				const res = await axios.get("http://localhost:9000/v2/posts")
+				const res = await axios.get(
+					"https://short-video-o1l5.onrender.com/v2/posts"
+				)
 				setVideos(res.data)
 				setLoading(false)
 			} catch (error) {
