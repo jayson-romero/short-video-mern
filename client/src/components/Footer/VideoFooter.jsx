@@ -1,8 +1,27 @@
 import "./VideoFooter.css"
 import MusicNoteIcon from "@mui/icons-material/MusicNote"
+import { useEffect } from "react"
 // import Ticker from "react-ticker"
+import { motion, useAnimation } from "framer-motion"
 
 const VideoFooter = ({ channel, description, song }) => {
+	const controls = useAnimation()
+
+	const animationVariants = {
+		initial: { x: "100%" },
+		animate: { x: "-100%" },
+	}
+
+	const animationOptions = {
+		duration: 3, // Duration of the animation in seconds
+		ease: "linear", // Linear easing for continuous animation
+		repeat: Infinity, // Infinite animation loop
+	}
+
+	useEffect(() => {
+		controls.start("animate", animationOptions)
+	}, [])
+
 	return (
 		<div className="videoFooter">
 			<div className="videoFooter__text">
@@ -10,18 +29,15 @@ const VideoFooter = ({ channel, description, song }) => {
 				<p>{description}</p>
 				<div className="videoFooter__ticker">
 					<MusicNoteIcon className="videoFooter__icon" />
-					<p>{song}</p>
-					{/* <PageVisibility onChange={handleVisibilityChange}>
-						{pageIsVisible && (
-							<Ticker mode="smooth">
-								{({ index }) => (
-									<>
-										<p>{song}</p>
-									</>
-								)}
-							</Ticker>
-						)}
-					</PageVisibility> */}
+					<div className="holder">
+						<motion.p
+							variants={animationVariants}
+							initial="initial"
+							animate={controls}
+						>
+							{song}
+						</motion.p>
+					</div>
 				</div>
 			</div>
 			<img

@@ -23,9 +23,12 @@
 	padding-top: 10px;
 }
 
+.videoFooter__ticker {
+	overflow: hidden;
+}
+
 .videoFooter__ticker > .ticker {
 	height: fit-content;
-
 	margin-left: 30px;
 	width: 60%;
 }
